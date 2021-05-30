@@ -2,15 +2,13 @@
 local discordwebhook = ''
 --End Of Configuration--
 
---Getting Timestamp
-local date = os.date('*t')
-	
-if date.day < 10 then date.day = '0' .. tostring(date.day) end
-if date.month < 10 then date.month = '0' .. tostring(date.month) end
-if date.hour < 10 then date.hour = '0' .. tostring(date.hour) end
-if date.min < 10 then date.min = '0' .. tostring(date.min) end
-if date.sec < 10 then date.sec = '0' .. tostring(date.sec) end
---
+local playertimes = {}
+
+RegisterServerEvent('log:server:playtime')
+AddEventHandler('log:server:playtime', function(playtime)
+  local _source = source
+  playertimes[_source] = playtime
+end)
 
 --Player Connecting
 AddEventHandler('playerConnecting', function()
@@ -19,6 +17,9 @@ AddEventHandler('playerConnecting', function()
   local license = nil
   local identifier = nil
 	local discord = nil
+  local xbl = nil
+  local live = nil
+  local fivem = nil
 	for k,v in ipairs(GetPlayerIdentifiers(_source))do
 		if string.sub(v, 1, string.len("license:")) == "license:" then
 		  license = v
@@ -52,16 +53,20 @@ AddEventHandler('playerConnecting', function()
   if fivem == nil then
     fivem = "No FiveM ID found"
   end
-    sendToDiscordLogsEmbed(3158326, '`✅` | PLAYER CONNECTING',' Player: `' .. name .. '`\n Hex-ID: `' ..identifier.. '`\n License: `' ..license.. '`\n Discord ID: `' ..discord.. '`\n XBL ID: `' ..xbl.. '`\n Live ID: `' ..live.. '`\n FiveM ID: `' ..fivem.. '`\n IP: `' ..GetPlayerEndpoint(_source).. '`', 'Made By MasiBall -- Timestamp: ' .. date.day .. '.' .. date.month .. '.' .. date.year .. ' - ' .. date.hour .. ':' .. date.min .. ':' .. date.sec)
+    sendToDiscordLogsEmbed(3158326, '`✅` | PLAYER CONNECTING',' Player: `' .. name .. '`\n Hex-ID: `' ..identifier.. '`\n License: `' ..license.. '`\n Discord ID: `' ..discord.. '`\n XBL ID: `' ..xbl.. '`\n Live ID: `' ..live.. '`\n FiveM ID: `' ..fivem.. '`\n IP: `' ..GetPlayerEndpoint(_source).. '`')
 end)
 
 --Player Leaving
 AddEventHandler('playerDropped', function(reason)
   local _source = source
   local name = GetPlayerName(_source)
+  local playtime = playertimes[_source] or 0
   local license = nil
   local identifier = nil
 	local discord = nil
+  local xbl = nil
+  local live = nil
+  local fivem = nil
   for k,v in ipairs(GetPlayerIdentifiers(_source))do
     if string.sub(v, 1, string.len("license:")) == "license:" then
       license = v
@@ -95,17 +100,18 @@ AddEventHandler('playerDropped', function(reason)
   if fivem == nil then
     fivem = "No FiveM ID found"
   end
-    sendToDiscordLogsEmbed(3158326, '`❌` | PLAYER DROPPED',' Reason: `' ..reason.. '`\n Player: `' ..name.. '`\n Hex-ID: `' ..identifier.. '`\n License: `' ..license.. '`\n Discord ID: `' ..discord.. '`\n XBL ID: `' ..xbl.. '`\n Live ID: `' ..live.. '`\n FiveM ID: `' ..fivem.. '`\n IP: `' ..GetPlayerEndpoint(_source).. '`', 'Made By MasiBall -- Timestamp: ' .. date.day .. '.' .. date.month .. '.' .. date.year .. ' - ' .. date.hour .. ':' .. date.min .. ':' .. date.sec)
+    sendToDiscordLogsEmbed(3158326, '`❌` | PLAYER DROPPED',' Reason: `' ..reason.. '`\n Player: `' ..name.. '`\n Playtime: `' ..playtime.. '` Minutes \n Hex-ID: `' ..identifier.. '`\n License: `' ..license.. '`\n Discord ID: `' ..discord.. '`\n XBL ID: `' ..xbl.. '`\n Live ID: `' ..live.. '`\n FiveM ID: `' ..fivem.. '`\n IP: `' ..GetPlayerEndpoint(_source).. '`')
 end)
 
 function sendToDiscordLogsEmbed(color, name, message, footer)
+  local footer = 'Made My MasiBall   '..os.date("%d/%m/%Y     %X")
   local embed = {
         {
             ["color"] = color,
             ["title"] = "**".. name .."**",
             ["description"] = message,
             ["footer"] = {
-                ["text"] = footer,
+            ["text"] = footer,
             },
         }
     }
