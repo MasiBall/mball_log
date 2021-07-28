@@ -1,5 +1,5 @@
 # mball_log
-Log player identifiers to Discord on player join/leave
+Log player identifiers to Discord on player join/leave. Also includes chat log.
 
 # Preview
 ![preview](https://user-images.githubusercontent.com/76224425/120080471-bdc5a580-c0c1-11eb-89f8-7ef576ce27ec.png)
