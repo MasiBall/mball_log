@@ -33,7 +33,7 @@ AddEventHandler('chatMessage', function(source, name, msg)
 end)
 
 function sendToDiscordLogsEmbed(color, name, message, footer)
-  local footer = 'Made My MasiBall   '..os.date("%d/%m/%Y     %X")
+  local footer = 'Made By MasiBall   '..os.date("%d/%m/%Y     %X")
   local embed = {
         {
             ["color"] = color,
