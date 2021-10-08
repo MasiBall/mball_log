@@ -15,7 +15,7 @@ AddEventHandler('playerConnecting', function()
   local _source = source
   local name = GetPlayerName(_source)
   local mb = Masipallopaa(_source)
-    sendToDiscordLogsEmbed(3158326, '`✅` | PLAYER CONNECTING',' Player: `' .. name .. '`\n Hex-ID: `' ..mb.identifier.. '`\n License: `' ..mb.license.. '`\n Discord ID: `' ..mb.discord.. '`\n XBL ID: `' ..mb.xbl.. '`\n Live ID: `' ..mb.live.. '`\n FiveM ID: `' ..mb.fivem.. '`\n IP: `' ..GetPlayerEndpoint(_source).. '`')
+    sendToDiscordLogsEmbed(3158326, '`✅` | PLAYER CONNECTING',' Player: `' .. name .. '`\n Hex-ID: `' ..mb.identifier.. '`\n License: `' ..mb.license.. '`\n Discord Tag: <@' ..mb.discord:gsub('discord:', '').. '>\n Discord ID: `' ..mb.discord.. '`\n XBL ID: `' ..mb.xbl.. '`\n Live ID: `' ..mb.live.. '`\n FiveM ID: `' ..mb.fivem.. '`\n IP: `' ..GetPlayerEndpoint(_source).. '`')
 end)
 
 --Player Leaving
@@ -24,16 +24,16 @@ AddEventHandler('playerDropped', function(reason)
   local name = GetPlayerName(_source)
   local playtime = playertimes[_source] or 0
   local mb = Masipallopaa(_source)
-    sendToDiscordLogsEmbed(3158326, '`❌` | PLAYER DROPPED',' Reason: `' ..reason.. '`\n Player: `' ..name.. '`\n Playtime: `' ..playtime.. '` Minutes \n Hex-ID: `' ..mb.identifier.. '`\n License: `' ..mb.license.. '`\n Discord ID: `' ..mb.discord.. '`\n XBL ID: `' ..mb.xbl.. '`\n Live ID: `' ..mb.live.. '`\n FiveM ID: `' ..mb.fivem.. '`\n IP: `' ..GetPlayerEndpoint(_source).. '`')
+    sendToDiscordLogsEmbed(3158326, '`❌` | PLAYER DROPPED',' Reason: `' ..reason.. '`\n Player: `' ..name.. '`\n Playtime: `' ..playtime.. '` Minutes \n Hex-ID: `' ..mb.identifier.. '`\n License: `' ..mb.license.. '`\n Discord Tag: <@' ..mb.discord:gsub('discord:', '').. '>\n Discord ID: `' ..mb.discord.. '`\n XBL ID: `' ..mb.xbl.. '`\n Live ID: `' ..mb.live.. '`\n FiveM ID: `' ..mb.fivem.. '`\n IP: `' ..GetPlayerEndpoint(_source).. '`')
 end)
 
 AddEventHandler('chatMessage', function(source, name, msg)
   local mb = Masipallopaa(source)
-  sendToDiscordLogsEmbed(3158326, '`💬` | CHAT',' Player: `' ..name.. '`\n Message: `' ..msg.. '`\n Hex-ID: `' ..mb.identifier.. '`\n License: `' ..mb.license.. '`\n Discord ID: `' ..mb.discord.. '`\n XBL ID: `' ..mb.xbl.. '`\n Live ID: `' ..mb.live.. '`\n FiveM ID: `' ..mb.fivem.. '`\n IP: `' ..GetPlayerEndpoint(source)..'`')
+  sendToDiscordLogsEmbed(3158326, '`💬` | CHAT',' Player: `' ..name.. '`\n Message: `' ..msg.. '`\n Hex-ID: `' ..mb.identifier.. '`\n License: `' ..mb.license.. '`\n Discord Tag: <@' ..mb.discord:gsub('discord:', '').. '>\n Discord ID: `' ..mb.discord.. '`\n XBL ID: `' ..mb.xbl.. '`\n Live ID: `' ..mb.live.. '`\n FiveM ID: `' ..mb.fivem.. '`\n IP: `' ..GetPlayerEndpoint(source)..'`')
 end)
 
 function sendToDiscordLogsEmbed(color, name, message, footer)
-  local footer = 'Made By MasiBall   '..os.date("%d/%m/%Y     %X")
+  local footer = 'Made By MasiBall - '..os.date("%d/%m/%Y     %X")
   local embed = {
         {
             ["color"] = color,
