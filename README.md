@@ -2,7 +2,7 @@
 Log player identifiers to Discord on player join/leave. Also includes chat log.
 
 # Preview
-![preview](https://user-images.githubusercontent.com/76224425/136558426-ffcb4821-4e2e-41e4-9083-fdfc9874c0a2.png)
+https://imgur.com/a/pVVZJsf
 
 
 # Installation
