@@ -1,8 +1,7 @@
 # mball_log
 Log player identifiers to Discord on player join/leave. Also includes chat log.
 
-# More Info In Forum Post
-https://forum.cfx.re/t/release-free-mball-log-standalone-esx/2998513?u=masiball
+More info can be found in [Here](https://forum.cfx.re/t/release-free-mball-log-standalone-esx/2998513?u=masiball)
 
 # Preview
 https://imgur.com/a/pVVZJsf
