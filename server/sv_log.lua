@@ -29,7 +29,7 @@ AddEventHandler('playerDropped', function(reason)
 
 
 function sendToDiscordLogsEmbed(color, name, message, footer)
-  local footer = 'Hiekkalaatikko - '..os.date("%d/%m/%Y     %X")
+  local footer = 'Made By MasiBall - '..os.date("%d/%m/%Y - %X")
   local embed = {
         {
             ["color"] = color,
